@@ -1,0 +1,105 @@
+[gd_scene load_steps=14 format=3 uid="uid://cluur5e55x18l"]
+
+[ext_resource type="Script" path="res://scripts/events/sacrifice_table.gd" id="1_wlch6"]
+[ext_resource type="Texture2D" uid="uid://bjy2yxfe1tiao" path="res://assets/forniture/pixilart-sprite(25).png" id="2_rpfs6"]
+[ext_resource type="Texture2D" uid="uid://0uljjorcg038" path="res://assets/forniture/pixilart-sprite(26).png" id="3_lbkkd"]
+[ext_resource type="Texture2D" uid="uid://tr71h04xjjvi" path="res://assets/ui/s-pixilart.png" id="4_cinxg"]
+[ext_resource type="PackedScene" uid="uid://bncjhjk4p5akj" path="res://scenes/event_handler.tscn" id="5_brt60"]
+[ext_resource type="AudioStream" uid="uid://cfsq4njpftsbp" path="res://assets/audio/doom-sound-effect-low-230713.mp3" id="6_nyc4h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_opkd1"]
+atlas = ExtResource("2_rpfs6")
+region = Rect2(96, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7l1t"]
+atlas = ExtResource("2_rpfs6")
+region = Rect2(48, 0, 48, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4nyof"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_opkd1")
+}],
+"loop": true,
+"name": &"blody",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7l1t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hm17p"]
+atlas = ExtResource("3_lbkkd")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sonsc"]
+atlas = ExtResource("3_lbkkd")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b8nqg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hm17p")
+}],
+"loop": true,
+"name": &"blody",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sonsc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0jgtl"]
+size = Vector2(48, 29)
+
+[node name="sacrifice_table" type="Node2D" node_paths=PackedStringArray("event_handler", "table", "darkness", "dagger", "audio_effect")]
+script = ExtResource("1_wlch6")
+event_handler = NodePath("event_handler")
+table = NodePath("AnimatedSprite2D")
+darkness = NodePath("darkness")
+dagger = NodePath("AnimatedSprite2D/dagger")
+audio_effect = NodePath("AudioStreamPlayer2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4nyof")
+autoplay = "default"
+
+[node name="dagger" type="AnimatedSprite2D" parent="AnimatedSprite2D"]
+position = Vector2(-5.96046e-08, 8)
+scale = Vector2(0.165, 0.165)
+sprite_frames = SubResource("SpriteFrames_b8nqg")
+autoplay = "default"
+
+[node name="darkness" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.482353)
+z_index = 7
+scale = Vector2(61.94, 40.1)
+texture = ExtResource("4_cinxg")
+
+[node name="event_handler" parent="." instance=ExtResource("5_brt60")]
+position = Vector2(0, 23)
+scale = Vector2(0.55, 0.555)
+event_name = "Sacrifice?"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 17.5)
+shape = SubResource("RectangleShape2D_0jgtl")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_nyc4h")
+volume_db = 14.07

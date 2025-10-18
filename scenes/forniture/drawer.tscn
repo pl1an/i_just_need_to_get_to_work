@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqd0wftorgotq"]
+
+[ext_resource type="Script" path="res://scripts/events/drawer.gd" id="1_d04xf"]
+[ext_resource type="Texture2D" uid="uid://cte1nbca2mti7" path="res://assets/forniture/ijntgtw_drawer-pixilart.png" id="2_uvi1m"]
+[ext_resource type="PackedScene" uid="uid://bncjhjk4p5akj" path="res://scenes/event_handler.tscn" id="3_0aro1"]
+[ext_resource type="AudioStream" uid="uid://cpacasomalrxi" path="res://assets/audio/070814_drawer-opening-amp-closing-37767.mp3" id="4_55iii"]
+
+[node name="drawer" type="Node2D" node_paths=PackedStringArray("event_handler", "audio_effect")]
+script = ExtResource("1_d04xf")
+event_handler = NodePath("event_handler")
+audio_effect = NodePath("AudioStreamPlayer2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_uvi1m")
+
+[node name="event_handler" parent="." instance=ExtResource("3_0aro1")]
+position = Vector2(-2, -2)
+scale = Vector2(0.51, 0.605)
+event_name = "Get pants?"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_55iii")
+volume_db = 10.124
+pitch_scale = 0.86

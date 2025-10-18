@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://n0osunierbdn"]
+
+[ext_resource type="Script" path="res://scripts/events/kitchen_sink.gd" id="1_jx0ot"]
+[ext_resource type="Texture2D" uid="uid://fqb7iou7wsl8" path="res://assets/forniture/pixilart-sprite(18).png" id="2_krwmy"]
+[ext_resource type="PackedScene" uid="uid://bncjhjk4p5akj" path="res://scenes/event_handler.tscn" id="3_smijy"]
+[ext_resource type="AudioStream" uid="uid://bonpb16lfxeq3" path="res://assets/audio/water-sink-68677 (mp3cut.net).mp3" id="4_wyb1j"]
+[ext_resource type="AudioStream" uid="uid://bldc1k8ct7h2j" path="res://assets/audio/plastic-bucket-drop-25688 (mp3cut.net).mp3" id="5_isdjb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e0f2s"]
+atlas = ExtResource("2_krwmy")
+region = Rect2(192, 0, 48, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x57pn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e0f2s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="kitchen_sink" type="Node2D" node_paths=PackedStringArray("event_handler", "audio_effect", "audio_effect2")]
+script = ExtResource("1_jx0ot")
+event_handler = NodePath("event_handler")
+audio_effect = NodePath("AudioStreamPlayer2D")
+audio_effect2 = NodePath("AudioStreamPlayer2D2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_x57pn")
+
+[node name="event_handler" parent="." instance=ExtResource("3_smijy")]
+position = Vector2(0, 21)
+scale = Vector2(0.765, 0.73)
+event_name = "Get water?"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_wyb1j")
+volume_db = 4.49
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_isdjb")
+volume_db = 13.694
+pitch_scale = 0.89

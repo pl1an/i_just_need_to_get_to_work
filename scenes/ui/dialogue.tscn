@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://dpb70ufjpyfkv"]
+
+[ext_resource type="Script" path="res://scripts/ui/dialogue.gd" id="1_shu8c"]
+[ext_resource type="Texture2D" uid="uid://c3278b7i2wg3w" path="res://assets/ui/ijwtgtw_eventui-pixilart(1).png" id="2_0nblc"]
+[ext_resource type="FontFile" uid="uid://c2u1ygscxp0bc" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="3_siwjs"]
+[ext_resource type="Script" path="res://scripts/ui/animated_text.gd" id="4_3d0mp"]
+
+[node name="dialogue" type="Control" node_paths=PackedStringArray("dialogue_text", "despawn_timer")]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 4
+script = ExtResource("1_shu8c")
+dialogue_text = NodePath("TextureRect/MarginContainer/AnimatedLabel")
+despawn_timer = NodePath("despawn_timer")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 1.0
+offset_right = 1159.0
+offset_bottom = 652.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_0nblc")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -61.5
+offset_bottom = 61.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="AnimatedLabel" type="Label" parent="TextureRect/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_siwjs")
+theme_override_font_sizes/font_size = 70
+text = "What is this...
+You smell, and aren't even dressed properly.
+DON'T EVER COME BACK TO MY COMPANY.
+You're a pathetic excuse for a human being."
+script = ExtResource("4_3d0mp")
+time_between_frames = 0.05
+
+[node name="despawn_timer" type="Timer" parent="."]
+
+[connection signal="finished_animation" from="TextureRect/MarginContainer/AnimatedLabel" to="." method="_on_animated_label_finished_animation"]
+[connection signal="timeout" from="despawn_timer" to="." method="_on_despawn_timer_timeout"]

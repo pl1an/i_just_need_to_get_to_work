@@ -1,0 +1,233 @@
+[gd_scene load_steps=29 format=3 uid="uid://04mulm2s5hh7"]
+
+[ext_resource type="Script" path="res://scripts/events/burning_clothes.gd" id="1_mqxkh"]
+[ext_resource type="Texture2D" uid="uid://dnbq7g2gqmts5" path="res://assets/ui/pixilart-sprite(20).png" id="2_exuvb"]
+[ext_resource type="Texture2D" uid="uid://cbyfnq2xartda" path="res://assets/forniture/clothes.png" id="2_u7uu5"]
+[ext_resource type="Texture2D" uid="uid://dt5l2s6ud5s6a" path="res://assets/forniture/fire.png" id="3_va5ka"]
+[ext_resource type="PackedScene" uid="uid://bncjhjk4p5akj" path="res://scenes/event_handler.tscn" id="4_k2qek"]
+[ext_resource type="AudioStream" uid="uid://d5ail0y6m61r" path="res://assets/audio/firewood-burning-sound-179862.mp3" id="6_kowuw"]
+[ext_resource type="AudioStream" uid="uid://0baeu4kt3tlt" path="res://assets/audio/clothes-drop-2-40202.mp3" id="7_16ret"]
+[ext_resource type="AudioStream" uid="uid://bg6xk7wjv5lqa" path="res://assets/audio/picking-up-and-putting-down-object-98794 (mp3cut.net).mp3" id="8_4ogj0"]
+[ext_resource type="AudioStream" uid="uid://csbf25ean8tdp" path="res://assets/audio/cig_extinguish-89851.mp3" id="9_v80mx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ynyge"]
+atlas = ExtResource("2_exuvb")
+region = Rect2(608, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xu3wf"]
+atlas = ExtResource("2_u7uu5")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jyhgl"]
+atlas = ExtResource("2_u7uu5")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cuube"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ynyge")
+}],
+"loop": true,
+"name": &"invisible",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xu3wf")
+}],
+"loop": true,
+"name": &"pants",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jyhgl")
+}],
+"loop": true,
+"name": &"tshirt",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h64sv"]
+atlas = ExtResource("3_va5ka")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8fko"]
+atlas = ExtResource("3_va5ka")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h21lf"]
+atlas = ExtResource("3_va5ka")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0doni"]
+atlas = ExtResource("3_va5ka")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yhunv"]
+atlas = ExtResource("3_va5ka")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_miqu4"]
+atlas = ExtResource("3_va5ka")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ha6ig"]
+atlas = ExtResource("3_va5ka")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vxh3"]
+atlas = ExtResource("3_va5ka")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ac7n"]
+atlas = ExtResource("3_va5ka")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n0qyn"]
+atlas = ExtResource("3_va5ka")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0m0un"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h64sv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u8fko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h21lf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0doni")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yhunv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_miqu4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ha6ig")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vxh3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ac7n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n0qyn")
+}],
+"loop": true,
+"name": &"fire",
+"speed": 15.0
+}]
+
+[sub_resource type="Animation" id="Animation_knb73"]
+resource_name = "default"
+
+[sub_resource type="Animation" id="Animation_5qvs3"]
+resource_name = "start_fire"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"start_fire"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pxsoj"]
+_data = {
+"default": SubResource("Animation_knb73"),
+"start_fire": SubResource("Animation_5qvs3")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o5pq6"]
+radius = 5.0
+
+[node name="burning_clothes" type="Node2D" node_paths=PackedStringArray("clothes_body", "fire_anim", "extinguish_event_handler", "pickup_event_handler", "audioeffect", "audioeffect2", "audioeffect3", "audioeffect4")]
+script = ExtResource("1_mqxkh")
+clothes_body = NodePath("clothes")
+fire_anim = NodePath("AnimationPlayer")
+extinguish_event_handler = NodePath("extinguish")
+pickup_event_handler = NodePath("pick_up")
+audioeffect = NodePath("AudioStreamPlayer2D")
+audioeffect2 = NodePath("AudioStreamPlayer2D2")
+audioeffect3 = NodePath("AudioStreamPlayer2D3")
+audioeffect4 = NodePath("AudioStreamPlayer2D4")
+
+[node name="clothes" type="AnimatedSprite2D" parent="."]
+rotation = 0.837758
+scale = Vector2(0.835, 0.8)
+sprite_frames = SubResource("SpriteFrames_cuube")
+animation = &"pants"
+
+[node name="fire2" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(-2, -2)
+scale = Vector2(0.375, 0.375)
+sprite_frames = SubResource("SpriteFrames_0m0un")
+animation = &"fire"
+autoplay = "fire"
+frame_progress = 0.613958
+
+[node name="fire" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(-4, 4)
+scale = Vector2(0.375, 0.375)
+sprite_frames = SubResource("SpriteFrames_0m0un")
+animation = &"fire"
+autoplay = "fire"
+frame_progress = 0.938039
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pxsoj")
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-3, 2)
+shape = SubResource("CircleShape2D_o5pq6")
+
+[node name="extinguish" parent="." instance=ExtResource("4_k2qek")]
+position = Vector2(-3, 3)
+scale = Vector2(0.4, 0.4)
+event_name = "Extinguish fire?"
+
+[node name="pick_up" parent="." instance=ExtResource("4_k2qek")]
+position = Vector2(-3, 3)
+scale = Vector2(0.135, 0.137)
+event_name = "Pick up clothes?"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_kowuw")
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_16ret")
+volume_db = 4.601
+
+[node name="AudioStreamPlayer2D3" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_4ogj0")
+
+[node name="AudioStreamPlayer2D4" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_v80mx")
+volume_db = -1.84
+pitch_scale = 0.86
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

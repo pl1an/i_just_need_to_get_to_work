@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://cumrkt4ckg7qh"]
+
+[ext_resource type="Script" path="res://scripts/events/ending_door.gd" id="1_dhjqn"]
+[ext_resource type="Texture2D" uid="uid://dsq2xap1aqa2" path="res://assets/forniture/pixilart-sprite(17).png" id="2_d6you"]
+[ext_resource type="PackedScene" uid="uid://bncjhjk4p5akj" path="res://scenes/event_handler.tscn" id="3_xoqgv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iobvp"]
+atlas = ExtResource("2_d6you")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7wg4a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iobvp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="ending_door" type="Node2D" node_paths=PackedStringArray("event_handler")]
+script = ExtResource("1_dhjqn")
+event_handler = NodePath("event_handler")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7wg4a")
+
+[node name="event_handler" parent="." instance=ExtResource("3_xoqgv")]
+position = Vector2(0, -11)
+scale = Vector2(0.455, 0.58)
+event_name = "Go out?"

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://co8vvc0h32l7a"
+path="res://.godot/imported/main-door-opening-closing-38280 (mp3cut.net).mp3-78b126b0d87f4bbfd9b6fe14287ae2c1.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/main-door-opening-closing-38280 (mp3cut.net).mp3"
+dest_files=["res://.godot/imported/main-door-opening-closing-38280 (mp3cut.net).mp3-78b126b0d87f4bbfd9b6fe14287ae2c1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

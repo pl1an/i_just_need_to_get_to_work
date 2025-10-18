@@ -1,0 +1,77 @@
+[gd_scene load_steps=11 format=3 uid="uid://c0o1k33yt3te8"]
+
+[ext_resource type="Script" path="res://scripts/events/table.gd" id="1_dfm6v"]
+[ext_resource type="Texture2D" uid="uid://cn3fpwgw4gfxk" path="res://assets/forniture/ijntgtw_table-pixilart.png" id="1_qiv35"]
+[ext_resource type="Texture2D" uid="uid://c1c3vd2waxvpy" path="res://assets/forniture/pixilart-drawing(3).png" id="2_pb4dy"]
+[ext_resource type="Texture2D" uid="uid://iy8m05rtulkq" path="res://assets/forniture/pixilart-drawing(4).png" id="3_smh5w"]
+[ext_resource type="Texture2D" uid="uid://cl8fho7cnj1br" path="res://assets/forniture/pixilart-sprite(36).png" id="4_ius0k"]
+[ext_resource type="PackedScene" uid="uid://bncjhjk4p5akj" path="res://scenes/event_handler.tscn" id="5_5p0ug"]
+[ext_resource type="AudioStream" uid="uid://dsw7eohf70gn5" path="res://assets/audio/eating-sound-effect-36186.mp3" id="7_cuhui"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b84yf"]
+atlas = ExtResource("4_ius0k")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ykapp"]
+atlas = ExtResource("4_ius0k")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0t3nr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b84yf")
+}],
+"loop": true,
+"name": &"fork",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ykapp")
+}],
+"loop": true,
+"name": &"knife",
+"speed": 5.0
+}]
+
+[node name="table" type="Node2D" node_paths=PackedStringArray("event_handler", "audioeffect1")]
+script = ExtResource("1_dfm6v")
+event_handler = NodePath("event_handler")
+audioeffect1 = NodePath("AudioStreamPlayer2D")
+
+[node name="chair" type="Sprite2D" parent="."]
+position = Vector2(-17, 10)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("1_qiv35")
+
+[node name="table" type="Sprite2D" parent="."]
+texture = ExtResource("2_pb4dy")
+
+[node name="knife" type="AnimatedSprite2D" parent="table"]
+position = Vector2(-8, 10)
+rotation = 1.5708
+scale = Vector2(0.12255, 0.12255)
+sprite_frames = SubResource("SpriteFrames_0t3nr")
+animation = &"knife"
+
+[node name="fork" type="AnimatedSprite2D" parent="table"]
+position = Vector2(-8, 1)
+rotation = 1.5708
+scale = Vector2(0.12255, 0.12255)
+sprite_frames = SubResource("SpriteFrames_0t3nr")
+animation = &"fork"
+
+[node name="plate" type="Sprite2D" parent="table"]
+position = Vector2(-9, 5)
+scale = Vector2(0.285, 0.285)
+texture = ExtResource("3_smh5w")
+
+[node name="event_handler" parent="." instance=ExtResource("5_5p0ug")]
+position = Vector2(-18, 11)
+scale = Vector2(0.625, 0.73)
+event_name = "Eat?"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_cuhui")
+volume_db = 6.442

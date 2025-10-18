@@ -1,0 +1,290 @@
+[gd_scene load_steps=35 format=3 uid="uid://bc28dissyra7d"]
+
+[ext_resource type="Script" path="res://scripts/events/door.gd" id="1_1m8u7"]
+[ext_resource type="Texture2D" uid="uid://dsq2xap1aqa2" path="res://assets/forniture/pixilart-sprite(17).png" id="1_hsp72"]
+[ext_resource type="PackedScene" uid="uid://bncjhjk4p5akj" path="res://scenes/event_handler.tscn" id="2_t5ukg"]
+[ext_resource type="Texture2D" uid="uid://b0awjeiktdjby" path="res://assets/forniture/door_falling.png" id="3_epron"]
+[ext_resource type="Texture2D" uid="uid://duljn07uscfh4" path="res://assets/forniture/pixilart-sprite(8).png" id="4_e1p4k"]
+[ext_resource type="PackedScene" uid="uid://r3du30kjvk2" path="res://scenes/ui/opacity.tscn" id="4_ufdf4"]
+[ext_resource type="Texture2D" uid="uid://box0yxviias3f" path="res://assets/forniture/ijntgtw_door_falling_onme-pixilart.png" id="7_5i4k6"]
+[ext_resource type="AudioStream" uid="uid://co8vvc0h32l7a" path="res://assets/audio/main-door-opening-closing-38280 (mp3cut.net).mp3" id="8_yu3sj"]
+[ext_resource type="AudioStream" uid="uid://hplvghgugfe2" path="res://assets/audio/door-182645.mp3" id="9_vw4ca"]
+[ext_resource type="AudioStream" uid="uid://dhaxxsbxmbqs4" path="res://assets/audio/hitting-wood-against-floor-68272 (mp3cut.net).mp3" id="10_tqktv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jd6ch"]
+atlas = ExtResource("3_epron")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tf0fp"]
+atlas = ExtResource("3_epron")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pq6t3"]
+atlas = ExtResource("3_epron")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_suf08"]
+atlas = ExtResource("3_epron")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jyaao"]
+atlas = ExtResource("3_epron")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u52mt"]
+atlas = ExtResource("3_epron")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7vfb"]
+atlas = ExtResource("1_hsp72")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e3gk6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jd6ch")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tf0fp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pq6t3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_suf08")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jyaao")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u52mt")
+}],
+"loop": false,
+"name": &"falling",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7vfb")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3pxod"]
+atlas = ExtResource("4_e1p4k")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hm8fj"]
+atlas = ExtResource("4_e1p4k")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_06vr5"]
+atlas = ExtResource("4_e1p4k")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pfjlh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3pxod")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hm8fj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_06vr5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3pxod")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hm8fj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_06vr5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3pxod")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hm8fj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_06vr5")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qxw1n"]
+size = Vector2(32, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6w6ex"]
+atlas = ExtResource("3_epron")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rt063"]
+atlas = ExtResource("3_epron")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4js3l"]
+atlas = ExtResource("3_epron")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8yujp"]
+atlas = ExtResource("3_epron")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3odg"]
+atlas = ExtResource("3_epron")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2kwb"]
+atlas = ExtResource("3_epron")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7433r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6w6ex")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rt063")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4js3l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8yujp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f3odg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2kwb")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xgqxg"]
+atlas = ExtResource("1_hsp72")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5v7nw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xgqxg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dm8gu"]
+atlas = ExtResource("7_5i4k6")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gpeng"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dm8gu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="door" type="Node2D" node_paths=PackedStringArray("event_handler", "anim_closed", "anim_closed_fallen", "anim_open", "anim_open_fallen", "audio_effect", "audio_effect2", "audio_effect3")]
+script = ExtResource("1_1m8u7")
+event_handler = NodePath("closed/event_handler")
+anim_closed = NodePath("closed/default_door")
+anim_closed_fallen = NodePath("closed/fallen_door")
+anim_open = NodePath("open/AnimatedSprite2D")
+anim_open_fallen = NodePath("open/fallen_anim")
+audio_effect = NodePath("AudioStreamPlayer2D")
+audio_effect2 = NodePath("AudioStreamPlayer2D2")
+audio_effect3 = NodePath("AudioStreamPlayer2D3")
+
+[node name="closed" type="StaticBody2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="default_door" type="AnimatedSprite2D" parent="closed"]
+position = Vector2(0, -6)
+scale = Vector2(1, -1)
+sprite_frames = SubResource("SpriteFrames_e3gk6")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="fallen_door" type="AnimatedSprite2D" parent="closed"]
+visible = false
+position = Vector2(0, -22)
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_pfjlh")
+frame = 8
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="closed"]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_qxw1n")
+
+[node name="event_handler" parent="closed" instance=ExtResource("2_t5ukg")]
+position = Vector2(0, -12)
+scale = Vector2(0.5, 0.58)
+event_name = "Open door?"
+
+[node name="opacity" parent="closed" instance=ExtResource("4_ufdf4")]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -16.0
+offset_top = -11.0
+offset_right = 304.0
+offset_bottom = 279.0
+scale = Vector2(0.1, 0.1)
+
+[node name="falling" type="AnimatedSprite2D" parent="closed"]
+visible = false
+position = Vector2(0, -23)
+rotation = -3.14159
+scale = Vector2(1, -1)
+sprite_frames = SubResource("SpriteFrames_7433r")
+frame = 5
+frame_progress = 1.0
+
+[node name="open" type="StaticBody2D" parent="."]
+visible = false
+position = Vector2(-12, -12)
+scale = Vector2(0.8, 0.8)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="open"]
+sprite_frames = SubResource("SpriteFrames_5v7nw")
+
+[node name="fallen_anim" type="AnimatedSprite2D" parent="open"]
+visible = false
+position = Vector2(15, -13.75)
+scale = Vector2(-1.32241, 1.21283)
+sprite_frames = SubResource("SpriteFrames_gpeng")
+autoplay = "default"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_yu3sj")
+volume_db = 8.283
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_vw4ca")
+
+[node name="AudioStreamPlayer2D3" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_tqktv")
+pitch_scale = 0.8
+
+[connection signal="animation_finished" from="closed/default_door" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="animation_finished" from="closed/fallen_door" to="." method="_on_fallen_door_animation_finished"]
+[connection signal="animation_finished" from="closed/falling" to="." method="_on_falling_animation_finished"]

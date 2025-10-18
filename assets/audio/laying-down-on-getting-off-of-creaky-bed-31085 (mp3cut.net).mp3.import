@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ccdkuhwyl8j0c"
+path="res://.godot/imported/laying-down-on-getting-off-of-creaky-bed-31085 (mp3cut.net).mp3-33791ade1cea57896dad60e12c6f2bc0.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/laying-down-on-getting-off-of-creaky-bed-31085 (mp3cut.net).mp3"
+dest_files=["res://.godot/imported/laying-down-on-getting-off-of-creaky-bed-31085 (mp3cut.net).mp3-33791ade1cea57896dad60e12c6f2bc0.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

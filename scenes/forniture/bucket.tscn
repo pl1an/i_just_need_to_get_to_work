@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://cdui7wpumpfef"]
+
+[ext_resource type="Script" path="res://scripts/events/bucket.gd" id="1_hemeq"]
+[ext_resource type="Texture2D" uid="uid://dfefvbi8fjsko" path="res://assets/forniture/pixilart-sprite(19).png" id="2_c5wau"]
+[ext_resource type="PackedScene" uid="uid://bncjhjk4p5akj" path="res://scenes/event_handler.tscn" id="3_clqbh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ds1e"]
+atlas = ExtResource("2_c5wau")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l00xl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ds1e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n2fuf"]
+
+[node name="bucket" type="Node2D" node_paths=PackedStringArray("event_handler")]
+script = ExtResource("1_hemeq")
+event_handler = NodePath("event_handler")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_l00xl")
+
+[node name="event_handler" parent="." instance=ExtResource("3_clqbh")]
+position = Vector2(-9, 0)
+scale = Vector2(1.71, 1.22)
+event_name = "Pick bucket?"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_n2fuf")

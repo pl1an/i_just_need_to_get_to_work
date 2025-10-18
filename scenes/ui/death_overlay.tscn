@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3ylwout0uxnj"]
+
+[ext_resource type="Script" path="res://scripts/ui/death_overlay.gd" id="1_key5c"]
+[ext_resource type="PackedScene" uid="uid://dqkm34lf0ltd7" path="res://scenes/ui/animated_text.tscn" id="2_32khy"]
+[ext_resource type="FontFile" uid="uid://c2u1ygscxp0bc" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="3_b2la5"]
+
+[node name="death_overlay" type="Control" node_paths=PackedStringArray("death_text", "ending_timer")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_key5c")
+death_text = NodePath("animated_text")
+ending_timer = NodePath("switch_to_ending_timer")
+
+[node name="animated_text" parent="." instance=ExtResource("2_32khy")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_b2la5")
+theme_override_font_sizes/font_size = 60
+text = "BAD LUCK"
+
+[node name="switch_to_ending_timer" type="Timer" parent="."]
+wait_time = 6.0
+
+[connection signal="timeout" from="switch_to_ending_timer" to="." method="_on_switch_to_ending_timer_timeout"]

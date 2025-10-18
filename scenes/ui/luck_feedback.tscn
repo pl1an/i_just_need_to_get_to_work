@@ -1,0 +1,201 @@
+[gd_scene load_steps=8 format=3 uid="uid://dv6po7mqve8pj"]
+
+[ext_resource type="Script" path="res://scripts/ui/luck_feedback.gd" id="1_jhn64"]
+[ext_resource type="Texture2D" uid="uid://i2yl8unjqnee" path="res://assets/ui/pixil-frame-1.png" id="2_0qk26"]
+[ext_resource type="PackedScene" uid="uid://dqkm34lf0ltd7" path="res://scenes/ui/animated_text.tscn" id="3_x1q6j"]
+[ext_resource type="FontFile" uid="uid://c2u1ygscxp0bc" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="4_bojjn"]
+[ext_resource type="Texture2D" uid="uid://br3mrxxa5ryn3" path="res://assets/ui/pixil-frame-3.png" id="5_8fwdj"]
+[ext_resource type="Texture2D" uid="uid://b7u1s5iynmcl2" path="res://assets/ui/pixil-frame-0.png" id="6_iwtay"]
+[ext_resource type="Texture2D" uid="uid://c3oo7vorwb0xx" path="res://assets/ui/pixil-frame-1(1).png" id="6_p0rwx"]
+
+[node name="luck_feedback" type="Control" node_paths=PackedStringArray("lucky", "good_anim_text", "good_clover1", "good_clover2", "luck_up", "luck_up_text", "luck_up_clover", "unlucky", "bad_anim_text", "bad_clover1", "bad_clover2", "luck_down", "luck_down_text", "luck_down_clover", "hide_timer")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_jhn64")
+lucky = NodePath("MarginContainer/VBoxContainer/HBoxContainer")
+good_anim_text = NodePath("MarginContainer/VBoxContainer/HBoxContainer/goodluck")
+good_clover1 = NodePath("MarginContainer/VBoxContainer/HBoxContainer/TextureRect")
+good_clover2 = NodePath("MarginContainer/VBoxContainer/HBoxContainer/TextureRect2")
+luck_up = NodePath("MarginContainer/VBoxContainer/HBoxContainer3")
+luck_up_text = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/luckup")
+luck_up_clover = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/TextureRect2")
+unlucky = NodePath("MarginContainer/VBoxContainer/HBoxContainer2")
+bad_anim_text = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/badluck")
+bad_clover1 = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/TextureRect")
+bad_clover2 = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/TextureRect2")
+luck_down = NodePath("MarginContainer/VBoxContainer/HBoxContainer4")
+luck_down_text = NodePath("MarginContainer/VBoxContainer/HBoxContainer4/luckdown")
+luck_down_clover = NodePath("MarginContainer/VBoxContainer/HBoxContainer4/MarginContainer2/TextureRect2")
+hide_timer = NodePath("hide_timer")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -124.0
+offset_right = 124.0
+offset_bottom = 55.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(25.525, 0)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_0qk26")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="goodluck" parent="MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_x1q6j")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.905882, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.960784, 1, 0.2, 1)
+theme_override_fonts/font = ExtResource("4_bojjn")
+theme_override_font_sizes/font_size = 45
+text = "Good Luck"
+time_between_frames = 0.05
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(25.525, 0)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_0qk26")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(25.525, 0)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("5_8fwdj")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="badluck" parent="MarginContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("3_x1q6j")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.682353, 0.0509804, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_bojjn")
+theme_override_font_sizes/font_size = 45
+text = "Bad Luck"
+time_between_frames = 0.05
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+visible = false
+custom_minimum_size = Vector2(25.525, 0)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("5_8fwdj")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_constants/margin_right = -35
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("6_iwtay")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="luckup" parent="MarginContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("3_x1q6j")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.905882, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.960784, 1, 0.2, 1)
+theme_override_fonts/font = ExtResource("4_bojjn")
+theme_override_font_sizes/font_size = 45
+text = "Luck up"
+time_between_frames = 0.05
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_constants/margin_left = -35
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2"]
+visible = false
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("6_iwtay")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+theme_override_constants/margin_right = -35
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer4/MarginContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("6_p0rwx")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="luckdown" parent="MarginContainer/VBoxContainer/HBoxContainer4" instance=ExtResource("3_x1q6j")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.682353, 0.0509804, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_bojjn")
+theme_override_font_sizes/font_size = 45
+text = "Luck down"
+time_between_frames = 0.05
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+theme_override_constants/margin_left = -35
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer4/MarginContainer2"]
+visible = false
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("6_p0rwx")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="hide_timer" type="Timer" parent="."]
+wait_time = 1.5
+
+[connection signal="finished_animation" from="MarginContainer/VBoxContainer/HBoxContainer/goodluck" to="." method="_on_goodluck_finished_animation"]
+[connection signal="finished_animation" from="MarginContainer/VBoxContainer/HBoxContainer2/badluck" to="." method="_on_badluck_finished_animation"]
+[connection signal="finished_animation" from="MarginContainer/VBoxContainer/HBoxContainer3/luckup" to="." method="_on_luckup_finished_animation"]
+[connection signal="finished_animation" from="MarginContainer/VBoxContainer/HBoxContainer4/luckdown" to="." method="_on_luckdown_finished_animation"]
+[connection signal="timeout" from="hide_timer" to="." method="_on_hide_timer_timeout"]

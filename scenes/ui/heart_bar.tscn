@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dl8ngwpw76xfv"]
+
+[ext_resource type="Script" path="res://scripts/ui/heart_bar.gd" id="1_ivxir"]
+[ext_resource type="PackedScene" uid="uid://cvub1g3tfoe6c" path="res://scenes/ui/beating_heart.tscn" id="1_padbs"]
+
+[node name="heart_bar" type="Node2D"]
+script = ExtResource("1_ivxir")
+
+[node name="beating_heart" parent="." instance=ExtResource("1_padbs")]
+
+[node name="beating_heart2" parent="." instance=ExtResource("1_padbs")]
+position = Vector2(16, -1)
+
+[node name="beating_heart3" parent="." instance=ExtResource("1_padbs")]
+position = Vector2(31, -1)
+
+[node name="beating_heart4" parent="." instance=ExtResource("1_padbs")]
+position = Vector2(46, -1)
+
+[node name="beating_heart5" parent="." instance=ExtResource("1_padbs")]
+position = Vector2(61, -1)

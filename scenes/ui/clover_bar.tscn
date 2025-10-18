@@ -1,0 +1,83 @@
+[gd_scene load_steps=8 format=3 uid="uid://dmllmkhh6mb7c"]
+
+[ext_resource type="Script" path="res://scripts/ui/clover_bar.gd" id="1_cnut1"]
+[ext_resource type="Texture2D" uid="uid://cl5b0p465kx6t" path="res://assets/ui/pixilart-sprite(27).png" id="2_sk2pb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6v53"]
+atlas = ExtResource("2_sk2pb")
+region = Rect2(34, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y1us0"]
+atlas = ExtResource("2_sk2pb")
+region = Rect2(0, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqflm"]
+atlas = ExtResource("2_sk2pb")
+region = Rect2(51, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbk07"]
+atlas = ExtResource("2_sk2pb")
+region = Rect2(17, 0, 17, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l5d84"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u6v53")
+}],
+"loop": true,
+"name": &"bad_luck",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y1us0")
+}],
+"loop": true,
+"name": &"luck",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gqflm")
+}],
+"loop": true,
+"name": &"ultra_bad_luck",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbk07")
+}],
+"loop": true,
+"name": &"ultra_luck",
+"speed": 5.0
+}]
+
+[node name="clover_bar" type="Node2D"]
+script = ExtResource("1_cnut1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(9, 9)
+sprite_frames = SubResource("SpriteFrames_l5d84")
+animation = &"ultra_luck"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(27, 9)
+sprite_frames = SubResource("SpriteFrames_l5d84")
+animation = &"luck"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
+position = Vector2(44, 9)
+sprite_frames = SubResource("SpriteFrames_l5d84")
+animation = &"luck"
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="."]
+position = Vector2(61, 9)
+sprite_frames = SubResource("SpriteFrames_l5d84")
+animation = &"luck"
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="."]
+position = Vector2(79, 9)
+sprite_frames = SubResource("SpriteFrames_l5d84")
+animation = &"ultra_bad_luck"

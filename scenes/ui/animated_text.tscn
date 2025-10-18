@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqkm34lf0ltd7"]
+
+[ext_resource type="Script" path="res://scripts/ui/animated_text.gd" id="1_hh7ve"]
+
+[node name="animated_text" type="Label"]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("1_hh7ve")
+time_between_frames = 0.3

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bg6xk7wjv5lqa"
+path="res://.godot/imported/picking-up-and-putting-down-object-98794 (mp3cut.net).mp3-0afcb5e4ada32baf369ea156fb68685a.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/picking-up-and-putting-down-object-98794 (mp3cut.net).mp3"
+dest_files=["res://.godot/imported/picking-up-and-putting-down-object-98794 (mp3cut.net).mp3-0afcb5e4ada32baf369ea156fb68685a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

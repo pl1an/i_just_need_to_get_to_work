@@ -1,0 +1,67 @@
+[gd_scene load_steps=11 format=3 uid="uid://d3w85oshbtpu8"]
+
+[ext_resource type="Script" path="res://scripts/events/portal.gd" id="1_74op1"]
+[ext_resource type="Texture2D" uid="uid://goj8mtwfby2p" path="res://assets/forniture/pixilart-sprite(28).png" id="1_mjgrq"]
+[ext_resource type="PackedScene" uid="uid://bncjhjk4p5akj" path="res://scenes/event_handler.tscn" id="2_k20nn"]
+[ext_resource type="AudioStream" uid="uid://bcaatov5wmg71" path="res://assets/audio/opening-movie-254465.mp3" id="4_v0x3g"]
+[ext_resource type="AudioStream" uid="uid://c1yij0fahqrhl" path="res://assets/audio/dark-pulsating-atmosphere-15s-237434.mp3" id="5_r8yfv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtb45"]
+atlas = ExtResource("1_mjgrq")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_spjr3"]
+atlas = ExtResource("1_mjgrq")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7tiq"]
+atlas = ExtResource("1_mjgrq")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_irfxh"]
+atlas = ExtResource("1_mjgrq")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uf02f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gtb45")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_spjr3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7tiq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_irfxh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="portal" type="Node2D" node_paths=PackedStringArray("event_handler", "audio_effect", "audio_effect2")]
+script = ExtResource("1_74op1")
+event_handler = NodePath("event_handler")
+audio_effect = NodePath("AudioStreamPlayer2D")
+audio_effect2 = NodePath("AudioStreamPlayer2D2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_uf02f")
+autoplay = "default"
+frame_progress = 0.0344854
+
+[node name="event_handler" parent="." instance=ExtResource("2_k20nn")]
+position = Vector2(-2, 6)
+scale = Vector2(0.44, 0.855)
+event_name = "Enter?"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_v0x3g")
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_r8yfv")
+volume_db = 1.874
+max_distance = 75.0

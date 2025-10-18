@@ -1,0 +1,85 @@
+[gd_scene load_steps=10 format=3 uid="uid://dg0hph4hgrn7c"]
+
+[ext_resource type="Script" path="res://scripts/events/stove.gd" id="1_bphqt"]
+[ext_resource type="Texture2D" uid="uid://dlku56ir4yhwo" path="res://assets/forniture/pixilart-sprite(35).png" id="2_trbuv"]
+[ext_resource type="PackedScene" uid="uid://bncjhjk4p5akj" path="res://scenes/event_handler.tscn" id="3_7q714"]
+[ext_resource type="PackedScene" uid="uid://04mulm2s5hh7" path="res://scenes/forniture/burning_clothes.tscn" id="4_t71bn"]
+[ext_resource type="AudioStream" uid="uid://cvweapmlkm40e" path="res://assets/audio/food-cooking-in-frying-pan-71250.mp3" id="5_ijjqp"]
+[ext_resource type="AudioStream" uid="uid://co1tlswy0rqjp" path="res://assets/audio/explosion-42132.mp3" id="6_70ncg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xoq3u"]
+atlas = ExtResource("2_trbuv")
+region = Rect2(0, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6rqq"]
+atlas = ExtResource("2_trbuv")
+region = Rect2(48, 0, 48, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nk880"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xoq3u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r6rqq")
+}],
+"loop": true,
+"name": &"destroyed",
+"speed": 5.0
+}]
+
+[node name="stove" type="Node2D" node_paths=PackedStringArray("event_handler", "stove_body", "cooking_timer", "fires_container", "audioeffect1", "audioeffect2")]
+script = ExtResource("1_bphqt")
+event_handler = NodePath("event_handler")
+stove_body = NodePath("stove_body")
+cooking_timer = NodePath("cooking_timer")
+fires_container = NodePath("fires")
+audioeffect1 = NodePath("AudioStreamPlayer2D")
+audioeffect2 = NodePath("AudioStreamPlayer2D2")
+
+[node name="stove_body" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nk880")
+autoplay = "default"
+
+[node name="event_handler" parent="." instance=ExtResource("3_7q714")]
+position = Vector2(0, 22)
+scale = Vector2(0.65, 0.605)
+event_name = "Heat up food?"
+
+[node name="cooking_timer" type="Timer" parent="."]
+wait_time = 4.0
+
+[node name="fires" type="Node2D" parent="."]
+visible = false
+
+[node name="burning_clothes" parent="fires" instance=ExtResource("4_t71bn")]
+position = Vector2(-3, 61)
+scale = Vector2(1.465, 1.465)
+
+[node name="burning_clothes2" parent="fires" instance=ExtResource("4_t71bn")]
+position = Vector2(-27, 111)
+scale = Vector2(2.55, 2.55)
+
+[node name="burning_clothes3" parent="fires" instance=ExtResource("4_t71bn")]
+position = Vector2(43, 34)
+scale = Vector2(1.415, 1.415)
+
+[node name="burning_clothes4" parent="fires" instance=ExtResource("4_t71bn")]
+position = Vector2(45, 3)
+scale = Vector2(1.215, 1.215)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ijjqp")
+volume_db = 4.602
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_70ncg")
+volume_db = 1.841
+
+[connection signal="timeout" from="cooking_timer" to="." method="_on_cooking_timer_timeout"]

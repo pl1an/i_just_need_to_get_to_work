@@ -1,0 +1,249 @@
+[gd_scene load_steps=6 format=3 uid="uid://bstpji4llexjw"]
+
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_kn35k"]
+[ext_resource type="Texture2D" uid="uid://tr71h04xjjvi" path="res://assets/ui/s-pixilart.png" id="1_oo53q"]
+[ext_resource type="FontFile" uid="uid://c2u1ygscxp0bc" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="2_xf2g0"]
+[ext_resource type="Script" path="res://scripts/ui/animated_text.gd" id="3_6lml0"]
+[ext_resource type="Texture2D" uid="uid://dbl1qh71eujq3" path="res://assets/ui/pixilart-drawing(1).png" id="4_i34cb"]
+
+[node name="menu" type="Control" node_paths=PackedStringArray("main_menu", "animated_title", "animated_subtitle", "animated_subtitle2", "animated_start", "animated_how", "how_menu", "instructions1", "instructions2", "instructions3", "instructions4", "animated_back")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_kn35k")
+main_menu = NodePath("MarginContainer/HBoxContainer/VBoxContainer")
+animated_title = NodePath("MarginContainer/HBoxContainer/VBoxContainer/title")
+animated_subtitle = NodePath("MarginContainer/HBoxContainer/VBoxContainer/sub1")
+animated_subtitle2 = NodePath("MarginContainer/HBoxContainer/VBoxContainer/sub2")
+animated_start = NodePath("MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/TextureButton")
+animated_how = NodePath("MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/TextureButton2")
+how_menu = NodePath("MarginContainer/HBoxContainer/VBoxContainer2")
+instructions1 = NodePath("MarginContainer/HBoxContainer/VBoxContainer2/MarginContainer/instructions")
+instructions2 = NodePath("MarginContainer/HBoxContainer/VBoxContainer2/MarginContainer2/instructions2")
+instructions3 = NodePath("MarginContainer/HBoxContainer/VBoxContainer2/MarginContainer3/instructions3")
+instructions4 = NodePath("MarginContainer/HBoxContainer/VBoxContainer2/MarginContainer4/instructions4")
+animated_back = NodePath("MarginContainer/HBoxContainer/VBoxContainer2/TextureButton3")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 0.552941)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("1_oo53q")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -229.5
+offset_right = 564.0
+offset_bottom = 229.5
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="title" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(343.575, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xf2g0")
+theme_override_font_sizes/font_size = 80
+text = "I just need to get to work."
+vertical_alignment = 1
+autowrap_mode = 2
+script = ExtResource("3_6lml0")
+time_between_frames = 0.1
+
+[node name="sub1" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xf2g0")
+theme_override_font_sizes/font_size = 20
+script = ExtResource("3_6lml0")
+time_between_frames = 0.05
+
+[node name="sub2" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xf2g0")
+theme_override_font_sizes/font_size = 20
+script = ExtResource("3_6lml0")
+time_between_frames = 0.05
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(137.39, 127.985)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("4_i34cb")
+texture_pressed = ExtResource("4_i34cb")
+texture_hover = ExtResource("4_i34cb")
+texture_disabled = ExtResource("4_i34cb")
+texture_focused = ExtResource("4_i34cb")
+stretch_mode = 5
+
+[node name="AnimatedLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/TextureButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.695
+offset_top = -20.9925
+offset_right = 47.305
+offset_bottom = 9.00751
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_xf2g0")
+theme_override_font_sizes/font_size = 25
+text = "Wake up"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_6lml0")
+
+[node name="TextureButton2" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(137.39, 127.985)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("4_i34cb")
+texture_pressed = ExtResource("4_i34cb")
+texture_hover = ExtResource("4_i34cb")
+texture_disabled = ExtResource("4_i34cb")
+texture_focused = ExtResource("4_i34cb")
+stretch_mode = 5
+
+[node name="AnimatedLabel2" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/TextureButton2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = -19.5
+offset_right = 55.0
+offset_bottom = 10.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_xf2g0")
+theme_override_font_sizes/font_size = 25
+text = "How?"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_6lml0")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 20
+
+[node name="instructions" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xf2g0")
+theme_override_font_sizes/font_size = 25
+script = ExtResource("3_6lml0")
+time_between_frames = 0.03
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 20
+
+[node name="instructions2" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/MarginContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xf2g0")
+theme_override_font_sizes/font_size = 25
+script = ExtResource("3_6lml0")
+time_between_frames = 0.03
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 20
+
+[node name="instructions3" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/MarginContainer3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xf2g0")
+theme_override_font_sizes/font_size = 25
+script = ExtResource("3_6lml0")
+time_between_frames = 0.03
+
+[node name="MarginContainer4" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 20
+
+[node name="instructions4" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/MarginContainer4"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_xf2g0")
+theme_override_font_sizes/font_size = 25
+script = ExtResource("3_6lml0")
+time_between_frames = 0.03
+
+[node name="TextureButton3" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+visible = false
+custom_minimum_size = Vector2(137.39, 127.985)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture_normal = ExtResource("4_i34cb")
+texture_pressed = ExtResource("4_i34cb")
+texture_hover = ExtResource("4_i34cb")
+texture_disabled = ExtResource("4_i34cb")
+texture_focused = ExtResource("4_i34cb")
+stretch_mode = 5
+
+[node name="AnimatedLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/TextureButton3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.695
+offset_top = -20.9925
+offset_right = 47.305
+offset_bottom = 9.00751
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_xf2g0")
+theme_override_font_sizes/font_size = 25
+text = "Got it?"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_6lml0")
+
+[connection signal="finished_animation" from="MarginContainer/HBoxContainer/VBoxContainer/title" to="." method="_on_animated_label_finished_animation"]
+[connection signal="finished_animation" from="MarginContainer/HBoxContainer/VBoxContainer/sub1" to="." method="_on_animated_label_2_finished_animation"]
+[connection signal="finished_animation" from="MarginContainer/HBoxContainer/VBoxContainer/sub2" to="." method="_on_animated_label_3_finished_animation"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/TextureButton2" to="." method="_on_texture_button_2_pressed"]
+[connection signal="finished_animation" from="MarginContainer/HBoxContainer/VBoxContainer2/MarginContainer/instructions" to="." method="_on_instructions_finished_animation"]
+[connection signal="finished_animation" from="MarginContainer/HBoxContainer/VBoxContainer2/MarginContainer2/instructions2" to="." method="_on_instructions_2_finished_animation"]
+[connection signal="finished_animation" from="MarginContainer/HBoxContainer/VBoxContainer2/MarginContainer3/instructions3" to="." method="_on_instructions_3_finished_animation"]
+[connection signal="finished_animation" from="MarginContainer/HBoxContainer/VBoxContainer2/MarginContainer4/instructions4" to="." method="_on_instructions_4_finished_animation"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer2/TextureButton3" to="." method="_on_texture_button_3_pressed"]

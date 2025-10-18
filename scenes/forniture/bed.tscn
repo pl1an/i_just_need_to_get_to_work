@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://dv362pfx0ewtm"]
+
+[ext_resource type="Script" path="res://scripts/events/bed.gd" id="1_dmq7e"]
+[ext_resource type="Texture2D" uid="uid://dl2ipi28ekku7" path="res://assets/forniture/bed.png" id="2_w3sik"]
+[ext_resource type="PackedScene" uid="uid://bncjhjk4p5akj" path="res://scenes/event_handler.tscn" id="3_ua5sy"]
+[ext_resource type="AudioStream" uid="uid://ccdkuhwyl8j0c" path="res://assets/audio/laying-down-on-getting-off-of-creaky-bed-31085 (mp3cut.net).mp3" id="4_gi3ob"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1my51"]
+atlas = ExtResource("2_w3sik")
+region = Rect2(32, 0, 32, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjsfl"]
+atlas = ExtResource("2_w3sik")
+region = Rect2(64, 0, 32, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bes70"]
+atlas = ExtResource("2_w3sik")
+region = Rect2(0, 0, 32, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v1c81"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1my51")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjsfl")
+}],
+"loop": true,
+"name": &"in_bed",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bes70")
+}],
+"loop": true,
+"name": &"out_of_bed",
+"speed": 5.0
+}]
+
+[node name="bed" type="Node2D" node_paths=PackedStringArray("event_handler", "get_out_timer", "audio_effect")]
+script = ExtResource("1_dmq7e")
+event_handler = NodePath("event_handler")
+get_out_timer = NodePath("get_out_timer")
+audio_effect = NodePath("AudioStreamPlayer2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_v1c81")
+animation = &"out_of_bed"
+autoplay = "in_bed"
+
+[node name="event_handler" parent="." instance=ExtResource("3_ua5sy")]
+scale = Vector2(0.185, 0.17)
+event_name = "Get out of bed?"
+
+[node name="get_out_timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_gi3ob")
+
+[connection signal="timeout" from="get_out_timer" to="." method="_on_get_out_timer_timeout"]

@@ -1,0 +1,117 @@
+[gd_scene load_steps=9 format=3 uid="uid://b1hv2dypaqmyl"]
+
+[ext_resource type="Texture2D" uid="uid://tr71h04xjjvi" path="res://assets/ui/s-pixilart.png" id="1_0m800"]
+[ext_resource type="Script" path="res://scripts/ui/damage_overlay.gd" id="1_3l7k3"]
+
+[sub_resource type="Animation" id="Animation_gu7t7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.878431, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_r5xsx"]
+resource_name = "explode"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-3.27826e-07, 0.466667, 2),
+"transitions": PackedFloat32Array(0.111906, 0.25, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xanra"]
+resource_name = "heal"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-3.27826e-07, 0.466667, 1),
+"transitions": PackedFloat32Array(0.466517, 0.25, 1),
+"update": 0,
+"values": [Color(0, 0.560784, 0.282353, 0), Color(3.03224e-06, 0.811205, 0.41925, 0.72549), Color(0, 0.560784, 0.282353, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_p4gsx"]
+resource_name = "take_damage"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.466667, 1),
+"transitions": PackedFloat32Array(0.466517, 0.25, 1),
+"update": 0,
+"values": [Color(0.878431, 0, 0, 0), Color(0.878431, 0, 0, 0.72549), Color(0.878431, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3hvow"]
+resource_name = "death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_56uo2"]
+_data = {
+"RESET": SubResource("Animation_gu7t7"),
+"death": SubResource("Animation_3hvow"),
+"explode": SubResource("Animation_r5xsx"),
+"heal": SubResource("Animation_xanra"),
+"take_damage": SubResource("Animation_p4gsx")
+}
+
+[node name="damage_overlay" type="Control" node_paths=PackedStringArray("anim")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_3l7k3")
+anim = NodePath("AnimationPlayer")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.878431, 0, 0, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("1_0m800")
+expand_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_56uo2")
+}

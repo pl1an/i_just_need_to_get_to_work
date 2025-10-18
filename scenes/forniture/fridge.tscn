@@ -1,0 +1,128 @@
+[gd_scene load_steps=15 format=3 uid="uid://csobebaq0hwnq"]
+
+[ext_resource type="Script" path="res://scripts/events/fridge.gd" id="1_sd2el"]
+[ext_resource type="Texture2D" uid="uid://bawgdxpeak56a" path="res://assets/char/side.png" id="2_gxdpb"]
+[ext_resource type="Texture2D" uid="uid://c2beiioi5030s" path="res://assets/forniture/pixilart-sprite(34).png" id="3_pyqb6"]
+[ext_resource type="AudioStream" uid="uid://b0i4m5wol3q2d" path="res://assets/audio/fridge-open-and-close-100149 (mp3cut.net).mp3" id="5_pib3m"]
+[ext_resource type="PackedScene" uid="uid://bncjhjk4p5akj" path="res://scenes/event_handler.tscn" id="5_u4le1"]
+[ext_resource type="AudioStream" uid="uid://bkvelvxs4vf5s" path="res://assets/audio/fridge-open-and-close-100149(1) (mp3cut.net).mp3" id="6_hj05h"]
+[ext_resource type="AudioStream" uid="uid://d08404ch5sfem" path="res://assets/audio/talkbottle1-92992.mp3" id="7_lcnjq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jiu10"]
+atlas = ExtResource("2_gxdpb")
+region = Rect2(0, 0, 32, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_shd5b"]
+atlas = ExtResource("2_gxdpb")
+region = Rect2(0, 0, 32, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7u1xa"]
+atlas = ExtResource("2_gxdpb")
+region = Rect2(32, 0, 32, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2rhqr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jiu10")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_shd5b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7u1xa")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ipdxv"]
+atlas = ExtResource("3_pyqb6")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnqf3"]
+atlas = ExtResource("3_pyqb6")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c6obt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ipdxv")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wnqf3")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}]
+
+[node name="fridge" type="Node2D" node_paths=PackedStringArray("handler", "fridge_anim", "player_looking_at_fridge", "look_at_fridge_timer", "stuck_at_fridge_timer", "close_automatically_timer", "audioeffect1", "audioeffect2", "audioeffect3")]
+script = ExtResource("1_sd2el")
+handler = NodePath("event_handler")
+fridge_anim = NodePath("AnimatedSprite2D")
+player_looking_at_fridge = NodePath("player_in_fridge")
+look_at_fridge_timer = NodePath("look_at_fridge_timer")
+stuck_at_fridge_timer = NodePath("stuck_at_fridge_timer")
+close_automatically_timer = NodePath("close_automatically")
+audioeffect1 = NodePath("AudioStreamPlayer2D")
+audioeffect2 = NodePath("AudioStreamPlayer2D2")
+audioeffect3 = NodePath("AudioStreamPlayer2D3")
+
+[node name="player_in_fridge" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(-17, -25)
+scale = Vector2(-2.8, 2.8)
+sprite_frames = SubResource("SpriteFrames_2rhqr")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.992816
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(27, 0)
+scale = Vector2(2.015, 2.015)
+sprite_frames = SubResource("SpriteFrames_c6obt")
+animation = &"closed"
+autoplay = "closed"
+
+[node name="event_handler" parent="." instance=ExtResource("5_u4le1")]
+position = Vector2(8, 19)
+scale = Vector2(1.025, 0.565)
+event_name = "Get food?"
+
+[node name="look_at_fridge_timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="stuck_at_fridge_timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="close_automatically" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_pib3m")
+volume_db = 13.806
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_hj05h")
+volume_db = 14.726
+
+[node name="AudioStreamPlayer2D3" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_lcnjq")
+volume_db = 2.761
+
+[connection signal="timeout" from="look_at_fridge_timer" to="." method="_on_look_at_fridge_timer_timeout"]
+[connection signal="timeout" from="stuck_at_fridge_timer" to="." method="_on_stuck_at_fridge_timer_timeout"]
+[connection signal="timeout" from="close_automatically" to="." method="_on_close_automatically_timeout"]

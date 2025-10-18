@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://ni46j3bk2ay0"]
+
+[ext_resource type="Texture2D" uid="uid://65dxo2rri8ur" path="res://assets/forniture/pixilart-drawing(8).png" id="1_4xu8j"]
+[ext_resource type="Script" path="res://scripts/events/cabinet.gd" id="1_mqpi2"]
+[ext_resource type="PackedScene" uid="uid://bncjhjk4p5akj" path="res://scenes/event_handler.tscn" id="2_xavls"]
+[ext_resource type="AudioStream" uid="uid://xfw0ok6nuqdg" path="res://assets/audio/opening-cabinet-99853 (mp3cut.net).mp3" id="4_ic2l8"]
+
+[node name="cabinet" type="Node2D" node_paths=PackedStringArray("event_handler", "audio_effect")]
+script = ExtResource("1_mqpi2")
+event_handler = NodePath("event_handler")
+audio_effect = NodePath("AudioStreamPlayer2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_4xu8j")
+
+[node name="event_handler" parent="." instance=ExtResource("2_xavls")]
+position = Vector2(1, 0)
+scale = Vector2(0.71, 1)
+event_name = "Get shirt?"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ic2l8")
+volume_db = 2.761
